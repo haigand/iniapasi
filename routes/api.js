@@ -8,7 +8,7 @@ var zahirr = db.get("zahirr");
 	console.log('')
 }
 
-var creatorList = ['@zahirrr','@zhirrrgans','@zhirr_ajalah','@zahiranjay', '@zahirganssss','@zhirrganteng','@zahirrgantengg'];
+var creatorList = ['@L-M0','@ling','@Linh','@Lynx', '@Lynx Mo','@Mo','@LIMO'];
 var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 
 
@@ -1386,11 +1386,34 @@ router.get('/anime/husbu', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
-
        fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/3aa286a01c8086545554096bf855e2b27b177ae5/husbu.json`))
         .then(response => response.json())
         .then(data => {
-        var result = data;
+        ni = JSON.parse(JSON.stringify(data));
+        nime =  n[Math.floor(Math.random() * ni.length)];
+        var result = nime;
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
+})
+})
+
+
+router.get('/anime/loli', async (req, res, next) => {
+        var apikeyInput = req.query.apikey
+            
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+
+       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/d3f7c5223fb402f1b7f7d9a53de4346cb591992d/loli.json`))
+        .then(response => response.json())
+        .then(data => {
+        n = JSON.parse(JSON.stringify(data));
+	nim =  n[Math.floor(Math.random() * n.length)];
+        var result = nim;
              res.json({
                  result
              })
