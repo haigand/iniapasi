@@ -1468,28 +1468,6 @@ router.get('/anime/husbu', async (req, res, next) => {
 })
 
 
-rrouter.get('/anime/husbu', async (req, res, next) => {
-        var apikeyInput = req.query.apikey
-            
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
-       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/3aa286a01c8086545554096bf855e2b27b177ae5/husbu.json`))
-        .then(response => response.json())
-        .then(data => {
-        ni = JSON.parse(JSON.stringify(data));
-        nime =  n[Math.floor(Math.random() * ni.length)];
-        var result = nime;
-             res.json({
-                 result
-             })
-         })
-         .catch(e => {
-         	res.json(loghandler.error)
-})
-})
-
-
-
 router.get('/wallpaper/programming', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
