@@ -1699,7 +1699,7 @@ router.get('/textmaker/neon9', async (req, res, next) => {
 })
 
 
-router.get('/textmaker/neon', async (req, res, next) => {
+router.get('/textmaker/texpro', async (req, res, next) => {
         var theme = req.query.theme,
              text = req.query.text,
              text2 = req.query.text2,
@@ -1709,13 +1709,13 @@ router.get('/textmaker/neon', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
         if (!theme) return res.json(loghandler.nottheme)
-        if (theme != 'pokemor' && theme != 'glitch-lol') return res.json(loghandler.notheme)
+        if (theme != 'neon-1' && theme != 'neon-2') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
 
-        if (theme == 'pokemor') {
+        if (theme == 'neon-1') {
             try {
             request.post({
-                url: "https://photooxy.com/manga-and-anime/make-pokemon-wallpaper-with-your-name-149.html",
+                url: "https://textpro.me/create-a-futuristic-technology-neon-light-text-effect-1006.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -1725,7 +1725,7 @@ router.get('/textmaker/neon', async (req, res, next) => {
                         $ = cheerio.load(b)
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
+                            var result = "https://textpro.me/"+h
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
@@ -1749,9 +1749,9 @@ router.get('/textmaker/neon', async (req, res, next) => {
                 	console.log(e);
                 res.json(loghandler.error)
                 }
-        } else if (theme == 'glitch-lol') {
+        } else if (theme == 'neon-2') {
             request.post({
-                url: "https://photooxy.com/other-design/retro-avatar-league-of-legends-147.html",
+                url: "https://textpro.me/neon-text-effect-online-879.html",
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
@@ -1761,7 +1761,7 @@ router.get('/textmaker/neon', async (req, res, next) => {
                         $ = cheerio.load(b)
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
-                            var result = "https://photooxy.com/"+h
+                            var result = "https://textpro.me/"+h
                             fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
                                 .then(response => response.json())
                                 .then(data => {
