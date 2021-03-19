@@ -14,7 +14,6 @@ var creator = creatorList[Math.floor(Math.random() * creatorList.length)];
 
 var ytdl = require('ytdl-core');
 var ytpl = require('ytpl');
-var brainly = require('brainly-scraper');
 var secure = require('ssl-express-www');
 var cors = require('cors');
 var scrapeYt = require("scrape-yt");
@@ -328,32 +327,6 @@ router.get('/tiktod/stalk', async (req, res, next) => {
                 status : true,
                 creator : `${creator}`,
                 result : user
-            })
-        })
-        .catch(e => {
-             res.json({
-                 status : false,
-                 creator : `${creator}`,
-                 message : "error, mungkin username anda tidak valid"
-             })
-         })
-})
-
-router.get('brainly', async (req, res, next) => {
-    var apikeyInput = req.query.apikey,
-        soal = req.query.soal
-
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
-    if (!soal) return res.json(loghandler.notsoal)
-
-
-    brainly(`${brien}`)
-           .then(res => {
-            res.json({
-                status : true,
-                creator : `${creator}`,
-                result : res
             })
         })
         .catch(e => {
