@@ -1523,6 +1523,358 @@ router.get('/muslim/niatmaghrib', async (req, res, next) => {
 })
 
 
+router.get('/textmaker/noti', async (req, res, next) => {
+        var theme = req.query.theme,
+             text = req.query.text,
+             text2 = req.query.text2,
+             text3 = req.query.text3,
+             apikeyInput = req.query.apikey;
+        
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+        if (!theme) return res.json(loghandler.nottheme)
+        if (theme != 'metal-wolf' && theme != 'daun-kaki') return res.json(loghandler.notheme)
+        if (!text) return res.json(loghandler.nottext)
+
+        if (theme == 'metal-wolf') {
+            try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/create-a-wolf-metal-text-effect-365.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                })
+                } catch (e) {
+                	console.log(e);
+                res.json(loghandler.error)
+                }
+        } else if (theme == 'daun-kaki') {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/quotes-under-fall-leaves-347.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                }) 
+        } else {
+            res.json(loghandler.error)
+        }
+})
+
+
+router.get('/textmaker/neon9', async (req, res, next) => {
+        var theme = req.query.theme,
+             text = req.query.text,
+             text2 = req.query.text2,
+             text3 = req.query.text3,
+             apikeyInput = req.query.apikey;
+        
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+        if (!theme) return res.json(loghandler.nottheme)
+        if (theme != '3dwhite' && theme != 'heri-poter') return res.json(loghandler.notheme)
+        if (!text) return res.json(loghandler.nottext)
+
+        if (theme == '3dwhite') {
+            try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/3d-text-effect-under-white-cube-217.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                })
+                } catch (e) {
+                	console.log(e);
+                res.json(loghandler.error)
+                }
+        } else if (theme == 'heri-poter') {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/create-harry-potter-text-on-horror-background-178.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                }) 
+        } else {
+            res.json(loghandler.error)
+        }
+})
+
+
+router.get('/textmaker/neon', async (req, res, next) => {
+        var theme = req.query.theme,
+             text = req.query.text,
+             text2 = req.query.text2,
+             text3 = req.query.text3,
+             apikeyInput = req.query.apikey;
+        
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+        if (!theme) return res.json(loghandler.nottheme)
+        if (theme != 'pokemor' && theme != 'glitch-lol') return res.json(loghandler.notheme)
+        if (!text) return res.json(loghandler.nottext)
+
+        if (theme == 'pokemor') {
+            try {
+            request.post({
+                url: "https://photooxy.com/manga-and-anime/make-pokemon-wallpaper-with-your-name-149.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                })
+                } catch (e) {
+                	console.log(e);
+                res.json(loghandler.error)
+                }
+        } else if (theme == 'glitch-lol') {
+            request.post({
+                url: "https://photooxy.com/other-design/retro-avatar-league-of-legends-147.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                }) 
+        } else {
+            res.json(loghandler.error)
+        }
+})
+
+
+router.get('/textmaker/neon7', async (req, res, next) => {
+        var theme = req.query.theme,
+             text = req.query.text,
+             text2 = req.query.text2,
+             text3 = req.query.text3,
+             apikeyInput = req.query.apikey;
+        
+	if(!apikeyInput) return res.json(loghandler.notparam)
+	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+        if (!theme) return res.json(loghandler.nottheme)
+        if (theme != 'party' && theme != 'hemker') return res.json(loghandler.notheme)
+        if (!text) return res.json(loghandler.nottext)
+
+        if (theme == 'party') {
+            try {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/create-party-neon-text-effect-161.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                })
+                } catch (e) {
+                	console.log(e);
+                res.json(loghandler.error)
+                }
+        } else if (theme == 'hemker') {
+            request.post({
+                url: "https://photooxy.com/logo-and-text-effects/text-under-web-matrix-effect-185.html",
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `text_1=${text}&login=OK`,
+                }, (e,r,b) => {
+                    if (!e) {
+                        $ = cheerio.load(b)
+                        $(".thumbnail").find("img").each(function() {
+                            h = $(this).attr("src")
+                            var result = "https://photooxy.com/"+h
+                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
+                                .then(response => response.json())
+                                .then(data => {
+                                    var urlnya = data.data.url,
+                                        delete_url = data.data.delete_url;
+                                        res.json({
+                                            status : true,
+                                            creator : `${creator}`,
+                                            message : `jangan lupa follow ${creator}`,
+                                            result:{
+                                                url:urlnya,
+                                                delete_url: delete_url,
+                                                info: 'url akan hilang setelah 2 menit'
+                                            }
+                                        })
+                                })
+                        })
+                    }
+                }) 
+        } else {
+            res.json(loghandler.error)
+        }
+})
+
+
 router.get('/muslim/niatisya', async (req, res, next) => {
         var apikeyInput = req.query.apikey
             
