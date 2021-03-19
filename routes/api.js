@@ -773,7 +773,7 @@ router.get('/textmaker/lmo', async (req, res, next) => {
         if (theme != 'grapiti' && theme != 'bintang') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
 
-        if (theme == 'coffee-cup') {
+        if (theme == 'grapiti') {
             try {
             request.post({
                 url: "https://photooxy.com/banner-cover/graffiti-text-cover-222.html",
@@ -1528,6 +1528,7 @@ router.get('/anime/loli', async (req, res, next) => {
          	res.json(loghandler.error)
 })
 })
+
 
 
 router.get('/wikipedia', async (req, res, next) => {
