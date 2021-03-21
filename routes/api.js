@@ -2047,26 +2047,10 @@ router.get('/anime/loli', async (req, res, next) => {
         n = JSON.parse(JSON.stringify(data));
 	nim =  n[Math.floor(Math.random() * n.length)];
         var result = nim;
-                 axios({
-                            method: 'get',
-                            url: nim,
-                            headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
-                            responseType: 'arraybuffer'
-                          })
-                          .then(function (response) {
-                            var headers = {'Content-Type': 'image/jpeg'};
-                            res.writeHead(200, headers);
-                            res.end(response.data, 'utf-8');
-                          })
-                          .catch(function (error) {
-                          res.send("error:" + error);
-                          });
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
+          await axios.get(`result`)
+                 })
+         })
+         .catch(e => {})
 })
 
 
