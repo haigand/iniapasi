@@ -590,8 +590,8 @@ router.get('/textmaker', async (req, res, next) => {
              text3 = req.query.text3,
              apikeyInput = req.query.apikey;
         
-	if(!apikeyInput) return res.json(loghandler.notparam)
-	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
+	if(!apikeyInput) return res.status(404).sendFile(process.cwd()+'/views/api.html');
+	if(apikeyInput != 'Fzntea') return res.status(404).sendFile(process.cwd()+'/views/api.html');
         if (!theme) return res.json(loghandler.nottheme)
         if (theme != 'glitch' && theme != 'google-suggestion') return res.json(loghandler.notheme)
         if (!text) return res.json(loghandler.nottext)
@@ -611,22 +611,20 @@ router.get('/textmaker', async (req, res, next) => {
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=93f5c8966cfaf3ca19051ee9f85c14f3&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                            axios({
+                            method: 'get',
+                            url: result,
+                            headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
+                            responseType: 'arraybuffer'
+                          })
+                          .then(function (response) {
+                            var headers = {'Content-Type': 'image/jpeg'};
+                            res.writeHead(200, headers);
+                            res.end(response.data, 'utf-8');
+                          })
+                          .catch(function (error) {
+                          res.send("error:" + error);
+                          });
                         })
                     }
                 })
@@ -649,22 +647,20 @@ router.get('/textmaker', async (req, res, next) => {
                         $(".thumbnail").find("img").each(function() {
                             h = $(this).attr("src")
                             var result = "https://photooxy.com/"+h
-                            fetch(encodeURI(`https://api.imgbb.com/1/upload?expiration=120&key=761ea2d5575581057a799d14e9c78e28&image=${result}&name=${randomTextNumber}`))
-                                .then(response => response.json())
-                                .then(data => {
-                                    var urlnya = data.data.url,
-                                        delete_url = data.data.delete_url;
-                                        res.json({
-                                            status : true,
-                                            creator : `${creator}`,
-                                            message : `jangan lupa follow ${creator}`,
-                                            result:{
-                                                url:urlnya,
-                                                delete_url: delete_url,
-                                                info: 'url akan hilang setelah 2 menit'
-                                            }
-                                        })
-                                })
+                            axios({
+                            method: 'get',
+                            url: result,
+                            headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
+                            responseType: 'arraybuffer'
+                          })
+                          .then(function (response) {
+                            var headers = {'Content-Type': 'image/jpeg'};
+                            res.writeHead(200, headers);
+                            res.end(response.data, 'utf-8');
+                          })
+                          .catch(function (error) {
+                          res.send("error:" + error);
+                          });
                         })
                     }
                 }) 
@@ -2041,34 +2037,21 @@ router.get('/anime/loli', async (req, res, next) => {
             
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
-
        fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/d3f7c5223fb402f1b7f7d9a53de4346cb591992d/loli.json`))
         .then(response => response.json())
         .then(data => {
-        n = JSON.parse(JSON.stringify(data));
-	nim =  n[Math.floor(Math.random() * n.length)];
+        ni = JSON.parse(JSON.stringify(data));
+        nim =  n[Math.floor(Math.random() * ni.length)];
         var result = nim;
-                 axios({
-                            method: 'get',
-                            url: result,
-                            headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
-                            responseType: 'arraybuffer'
-                          })
-                          .then(function (response) {
-                            var headers = {'Content-Type': 'image/jpeg'};
-                            res.writeHead(200, headers);
-                            res.end(response.data, 'utf-8');
-                          })
-                          .catch(function (error) {
-                          res.send("error:" + error);
-                          });
-                        })
-                    }
-                }) 
-        } else {
-            res.json(loghandler.error)
-        }
+             res.json({
+                 result
+             })
+         })
+         .catch(e => {
+         	res.json(loghandler.error)
 })
+})
+
 
 
 router.get('/wikipedia', async (req, res, next) => {
@@ -2091,6 +2074,7 @@ router.get('/wikipedia', async (req, res, next) => {
          	res.json(loghandler.error)
 })
 })
+
 
 router.get('/randomquote/muslim', async (req, res, next) => {
         var apikeyInput = req.query.apikey
