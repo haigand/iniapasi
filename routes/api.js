@@ -2050,7 +2050,7 @@ router.get('/anime/loli', async (req, res, next) => {
              res.json({
                  axios({
                             method: 'get',
-                            url: result,
+                            url: nim,
                             headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
                             responseType: 'arraybuffer'
                           })
