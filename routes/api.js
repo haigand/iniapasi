@@ -2047,7 +2047,6 @@ router.get('/anime/loli', async (req, res, next) => {
         n = JSON.parse(JSON.stringify(data));
 	nim =  n[Math.floor(Math.random() * n.length)];
         var result = nim;
-             res.json({
                  axios({
                             method: 'get',
                             url: nim,
