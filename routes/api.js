@@ -2041,19 +2041,33 @@ router.get('/anime/loli', async (req, res, next) => {
 	if(!apikeyInput) return res.json(loghandler.notparam)
 	if(apikeyInput != 'GFL') return res.json(loghandler.invalidKey)
 
-       fetch(encodeURI(`https://rawcdn.githack.com/L-M0z/Api-raw-v/d3f7c5223fb402f1b7f7d9a53de4346cb591992d/loli.json`))
+       await axios.get(`https://rawcdn.githack.com/L-M0z/Api-raw-v/d3f7c5223fb402f1b7f7d9a53de4346cb591992d/loli.json`)
         .then(response => response.json())
         .then(data => {
         n = JSON.parse(JSON.stringify(data));
 	nim =  n[Math.floor(Math.random() * n.length)];
         var result = nim;
-          await axios.get(`result`)
-                 })
-         })
-         .catch(e => {})
+                 axios({
+                            method: 'get',
+                            url: result,
+                            headers: {'User-Agent':'Mozilla/5.0 (BlackBerry; U; BlackBerry 9900; en) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.0.0.585 Mobile Safari/534.11+'},
+                            responseType: 'arraybuffer'
+                          })
+                          .then(function (response) {
+                            var headers = {'Content-Type': 'image/jpeg'};
+                            res.writeHead(200, headers);
+                            res.end(response.data, 'utf-8');
+                          })
+                          .catch(function (error) {
+                          res.send("error:" + error);
+                          });
+                        })
+                    }
+                }) 
+        } else {
+            res.json(loghandler.error)
+        }
 })
-
-
 
 router.get('/wikipedia', async (req, res, next) => {
         var apikeyInput = req.query.apikey,
