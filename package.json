@@ -43,6 +43,7 @@
     "ssl-express-www": "^3.0.7",
     "tiktok-scraper": "^1.4.12",
     "urlencode": "^1.1.0",
+    "simple-youtube-api": "^5.2.1",
     "ytdl-core": "^4.4.5",
     "ytpl": "^2.0.5"
   },
