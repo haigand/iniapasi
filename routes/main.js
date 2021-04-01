@@ -18,8 +18,8 @@ router.get('/config', (req, res) => {
             prefix : '/',
             namabot: 'ZhirrrBot',
             namaowner: 'Zhirrr',
-            instagram: 'zhirr_ajalah',
-            youtube : 'Gak Punya'
+            instagram: 'alpin_xploit',
+            youtube : 'alpinofc'
         }
     }
     res.json(config)
